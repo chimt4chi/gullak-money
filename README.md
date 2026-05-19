@@ -286,14 +286,37 @@ The docs are fully interactive — you can authorize with a Bearer token and tes
 
 ---
 
-## Deployment (Render / Railway)
+## Deployment (Render with SQLite)
 
-1. Create a new **Web Service** from your GitHub repo.
-2. Set **Build Command**: `npm install && npm run migrate`
-3. Set **Start Command**: `npm start`
-4. Add all environment variables from the table above.
-5. Create a **MySQL** database instance (e.g., Railway MySQL or PlanetScale) and point `DB_*` vars to it.
-6. After deploy, run seed: `npm run seed` (or use platform console).
+Since we are using SQLite, we can deploy the API as a **Render Web Service** and persist our database using a **Render Persistent Disk**.
+
+### 1. Create a Web Service
+- Connect your GitHub repository to Render.
+- Set **Runtime** to `Node`.
+- Set **Build Command** to: `npm install && npm run migrate`
+- Set **Start Command** to: `npm start`
+
+### 2. Add a Persistent Disk
+- Go to the **Disks** section in your Render Service settings.
+- Click **Add Disk**.
+- Name: `gullak-db` (or any name).
+- Mount Path: `/data`
+- Size: `1 GB` (or minimum size, since SQLite database is small).
+
+### 3. Configure Environment Variables
+In the **Env Groups** or **Environment** section of your service, add the following:
+
+| Key | Value | Description |
+|---|---|---|
+| `NODE_ENV` | `production` | Production environment |
+| `DB_PATH` | `/data/gullak_money.sqlite` | Points to the persistent disk path |
+| `JWT_SECRET` | `your-secure-production-jwt-secret` | Generate a 32+ character key |
+| `JWT_REFRESH_SECRET` | `your-secure-production-refresh-secret` | Generate another 32+ character key |
+
+### 4. (Optional) Seeding Demo Data
+To populate the production database with the 8 default categories and demo transactions, you can run the seed script once after the service is successfully deployed:
+- Go to the **Shell** tab in the Render Dashboard.
+- Run: `npm run seed`
 
 ---
 

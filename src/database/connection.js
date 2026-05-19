@@ -8,8 +8,9 @@ let _db;
 
 async function getDB() {
   if (!_db) {
+    const dbPath = process.env.DB_PATH || path.resolve(__dirname, '../../gullak_money.sqlite');
     _db = await open({
-      filename: path.resolve(__dirname, '../../gullak_money.sqlite'),
+      filename: dbPath,
       driver: sqlite3.Database,
     });
     await _db.run('PRAGMA foreign_keys = ON');
