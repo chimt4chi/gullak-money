@@ -1,0 +1,50 @@
+{
+  "name": "gullak-money-api",
+  "version": "1.0.0",
+  "description": "Personal Expense Tracker REST API with JWT Authentication",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "seed": "node src/database/seed.js",
+    "migrate": "node src/database/migrate.js",
+    "test": "jest --runInBand --forceExit",
+    "test:auth": "jest --testPathPattern=auth --runInBand --forceExit",
+    "test:transactions": "jest --testPathPattern=transactions --runInBand --forceExit"
+  },
+  "keywords": [
+    "expense-tracker",
+    "rest-api",
+    "jwt",
+    "mysql"
+  ],
+  "author": "Gullak Money",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.2.0",
+    "express-validator": "^7.0.1",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.9.4",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^6.0.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "uuid": "^9.0.1",
+    "winston": "^3.13.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "supertest": "^7.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testTimeout": 30000
+  }
+}
