@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Personal Expense Tracker REST API with JWT Authentication",
   "main": "src/server.js",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",

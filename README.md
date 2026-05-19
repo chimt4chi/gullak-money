@@ -293,7 +293,10 @@ Since we are using SQLite, we can deploy the API as a **Render Web Service** and
 ### 1. Create a Web Service
 - Connect your GitHub repository to Render.
 - Set **Runtime** to `Node`.
-- Set **Build Command** to: `npm install && npm run migrate`
+- Set **Build Command** to:
+  ```bash
+  npm install && npm rebuild sqlite3 --build-from-source && npm run migrate
+  ```
 - Set **Start Command** to: `npm start`
 
 ### 2. Add a Persistent Disk
